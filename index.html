@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="RealCustom: Narrowing Real Text Word for Real-Time Open-Domain Text-to-Image Customization.">
+  <meta name="keywords" content="Text-to-Image Customization">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RealCustom</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">RealCustom: Narrowing Real Text Word for Real-Time Open-Domain Text-to-Image Customization</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://corleone-huang.github.io/">Mengqi Huang</a><sup>1</sup><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com.hk/citations?hl=zh-CN&user=m-0P8sgAAAAJ">Zhendong Mao</a><sup>1</sup><sup>&#10013</sup>,</span>
+            <span class="author-block">
+              <a href="https://onion-liu.github.io/">Mingcong Liu</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&authuser=1&user=9rWWCgUAAAAJ">Qian He</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com.hk/citations?user=hxGs4ukAAAAJ&hl=zh-CN">Yongdong Zhang</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Science and Technology of China, </span>
+            <span class="author-block"><sup>2</sup>ByteDance</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>Works done during the internship at ByteDance,</span>
+            <span class="author-block"><sup>&#10013</sup>Corresponding author.</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2403.00483.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://corleone-huang.github.io/realcustom/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (To be released)</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/images/teaser.png"
+                type="video/mp4">
+      </video> -->
+      <img src="./static/images/teaser.jpg"
+                 alt="Interpolate start reference image."/>
+      <h2 class="subtitle has-text-centered">
+        Given a <b>single</b> image representing the given subject in the <b>open domain</b>
+        (<b>any subjects</b>, portrait painting, favorite toys, etc.), 
+        RealCustom could generate realistic images that consistently adhere to the given text for the given subjects 
+        in <b>real-time</b> (without any test-time optimization steps).
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!--examples-->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="section-title">
+        <h2 class="title is-3 is-centered">Show Cases (based on SDXL)</h2>
+      </div>
+
+      <div id="results-carousel-face" class="carousel results-carousel">
+
+        <div class="item item-puppet">
+          <div class="carousel-content">
+            <img src="static/images/slider/show_case1.jpg"
+                   alt="Puppet."/>
+          </div>
+        </div>
+
+        <div class="item item-puppet">
+          <div class="carousel-content">
+            <img src="static/images/slider/show_case2.jpg"
+                   alt="Puppet."/>
+          </div>
+        </div>
+
+        <div class="item item-puppet">
+          <div class="carousel-content">
+            <img src="static/images/slider/show_case3.jpg"
+                   alt="Puppet."/>
+          </div>
+        </div>
+        
+        <div class="item item-puppet">
+          <div class="carousel-content">
+            <img src="static/images/slider/show_case4.jpg"
+                   alt="Puppet."/>
+          </div>
+        </div>
+
+        <div class="item item-puppet">
+          <div class="carousel-content">
+            <img src="static/images/slider/show_case5.jpg"
+                   alt="Puppet."/>
+          </div>
+        </div>
+        
+        <div class="item item-puppet">
+          <div class="carousel-content">
+            <img src="static/images/slider/show_case6.jpg"
+                   alt="Puppet."/>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Text-to-image customization, which aims to synthesize text-driven images for the given subjects, 
+            has recently revolutionized content creation. Existing works follow the
+            pseudo-word paradigm, i.e., represent the given subjects as
+            pseudo-words and then compose them with the given text.
+            However, the inherent entangled influence scope of pseudo-words with the given text results in a dual-optimum paradox, 
+            i.e., the similarity of the given subjects and the controllability of the given text could not be optimal simultaneously. We present RealCustom that, 
+            for the first time, disentangles similarity from controllability by precisely limiting
+            subject influence to relevant parts only, achieved by gradually narrowing real text word from its general connotation
+            to the specific subject and using its cross-attention to distinguish relevance. Specifically, RealCustom introduces a
+            novel “train-inference” decoupled framework: (1) during
+            training, RealCustom learns general alignment between visual conditions to original textual conditions by a novel
+            adaptive scoring module to adaptively modulate influence
+            quantity; (2) during inference, a novel adaptive mask guidance strategy is proposed to iteratively update the influence
+            scope and influence quantity of the given subjects to gradually narrow the generation of the real text word. Com-
+            prehensive experiments demonstrate the superior real-time
+            customization ability of RealCustom in the open domain,
+            achieving both unprecedented similarity of the given subjects and controllability of the given text for the first time.
+          </p>
+          <!-- <p>
+            Our approach augments neural radiance fields
+            (NeRF) by optimizing an
+            additional continuous volumetric deformation field that warps each observed point into a
+            canonical 5D NeRF.
+            We observe that these NeRF-like deformation fields are prone to local minima, and
+            propose a coarse-to-fine optimization method for coordinate-based models that allows for
+            more robust optimization.
+            By adapting principles from geometry processing and physical simulation to NeRF-like
+            models, we propose an elastic regularization of the deformation field that further
+            improves robustness.
+          </p>
+          <p>
+            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
+            photos/videos into deformable NeRF
+            models that allow for photorealistic renderings of the subject from arbitrary
+            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
+            using a
+            rig with two mobile phones that take time-synchronized photos, yielding train/validation
+            images of the same pose at different viewpoints. We show that our method faithfully
+            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
+            fidelity.
+          </p> -->
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-left"> -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">How does it work?</h2>
+        <!-- <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div> -->
+        <img src="./static/images/methods.png"
+                 alt="Interpolate start reference image."/>
+      <div class="content has-text-left">
+        <p>
+          <b>Core Idea: </b> disentangle the influence scope of the <b> given subject </b> from the influence scope of the <b>given text</b>, 
+          by precisely limiting the given subjects to influence only the relevant parts 
+          while maintaining other irreverent ones purely controlled by the given texts, 
+          achieving both high-quality similarity and controllability in a real-time open-domain scenario.
+          <br>
+          <b>Training Paradigm: </b> 
+          RealCustom only learns the generalized alignment capabilities between visual conditions and pre-trained models' 
+          original text conditions on large-scale text-image datasets through a novel adaptive scoring module, 
+          which modulates the influence quantity based on text and currently generated features.
+          <br>
+          <b>Inference Paradigm: </b> 
+          real-time customization is achieved by a novel adaptive mask guidance strategy, 
+          which gradually narrows down a real text word based on the learned alignment capabilities.
+        </p>
+      </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Comparison To Current Methods</h2>
+        <!-- <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div> -->
+        <img src="./static/images/comparison_main.jpg"
+                 alt="Interpolate start reference image."/>
+        <p>
+          RealCustom could produce much higher quality customization results that have better similarity with the given subject 
+          and better controllability with the given text compared to existing works. 
+          Moreover, RealCustom shows superior diversity (different subject poses, locations, etc.) 
+          and generation quality (e.g., the “autumn leaves” scene in the third row).
+        </p>
+
+        <img src="static/images/comparison_quantative.jpg"
+                 alt="Interpolate start reference image."/>
+        <p>
+          <div class="content has-text-left">
+          <b>Quantitative comparisons. </b>
+          <br>
+          <b>Left :</b> Our proposed RealCustom outperforms existing methods in both controllability and similarity.
+          The significant improvement on ImageReward validates that RealCustom could generate customized images with much higher quality (higher aesthetic score); 
+          <br>
+          <b>Right :</b> We plot the “CLIP-T verse DINO”, 
+          showing that the existing methods are trapped into the dual-optimum paradox, 
+          while RealCustom completely get rid of it and achieve both high-quality similarity and controllability.
+          </div>
+        </p>
+
+      </div>
+    </div>
+
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Visualization</h2>
+        <!-- <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div> -->
+        <img src="./static/images/visualization_main.png"
+                 alt="Interpolate start reference image."/>
+        <p>
+          <div class="content has-text-left">
+          Illustration of gradually narrowing the real words into the given subjects. 
+          RealCustom generated results (first row) and the original text-to-image generated result (second row) by pre-trained models with the same seed. 
+          The mask is visualized by the Top-25% highest attention score regions of the real word “toy”. 
+          We could observe that starting from the same state (the same mask since there's no information of the given subject is introduced at the beginning), 
+          RealCustom gradually forms the structure and details of the given subject by our proposed adaptive mask strategy, 
+          achieving the open-domain zero-shot customization.
+          </div>
+        </p>
+
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="section-title">
+        <h2 class="title is-3 is-centered">More visualizations about how the customization is achieved</h2>
+      </div>
+
+      <div id="results-carousel-face" class="carousel results-carousel">
+
+        <div class="item item-puppet">
+          <div class="carousel-content">
+            <img src="static/images/slider2/1.jpg"
+                   alt="Puppet."/>
+          </div>
+        </div>
+
+        <div class="item item-puppet">
+          <div class="carousel-content">
+            <img src="static/images/slider2/2.jpg"
+                   alt="Puppet."/>
+          </div>
+        </div>
+
+        <div class="item item-puppet">
+          <div class="carousel-content">
+            <img src="static/images/slider2/3.jpg"
+                   alt="Puppet."/>
+          </div>
+        </div>
+        
+        <div class="item item-puppet">
+          <div class="carousel-content">
+            <img src="static/images/slider2/4.jpg"
+                   alt="Puppet."/>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- <div class="columns is-centered"> -->
+
+      <!-- Visual Effects. -->
+      <!-- <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Visual Effects</h2>
+          <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p>
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/dollyzoom-stacked.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div> -->
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <!-- <div class="column">
+        <h2 class="title is-3">Matting</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
+            </p>
+            <video id="matting-video" controls playsinline height="100%">
+              <source src="./static/videos/matting.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div> -->
+    <!-- </div> -->
+    <!--/ Matting. -->
+
+    <!-- Concurrent Work. -->
+    <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            There's a lot of excellent work that was introduced around the same time as ours.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
+          </p>
+          <p>
+            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
+            both use deformation fields to model non-rigid scenes.
+          </p>
+          <p>
+            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
+          </p>
+          <p>
+            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+          </p>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section> -->
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website source code based on the <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> project page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
