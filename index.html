@@ -325,30 +325,20 @@
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-3">Abstract (TL,DR)</h2>
         <img src="static/images_real_plus/real++_motivation.jpg"
                  alt="Interpolate start reference image."/>
         <div class="content has-text-justified">
           <p>
-            Text-to-image customization, which aims to synthesize text-driven images for the given subjects, has recently revolutionized content creation. 
-            Existing works follow the foreign pseudo-word paradigm, i.e., 
-            firstly representing the given subjects as pseudo-words that do not exist in the textual vocabulary, 
-            and secondly composing them with other given text. 
+            <span style="color: blue;">Existing Text-to-image customization works: </span>
+            follow the foreign pseudo-word paradigm, i.e., 
+            (1) firstly representing the given subjects as pseudo-words that do not exist in the textual vocabulary, 
+            (2) secondly composing them with other given text. 
             However, the inherent entangled influence scope of these foreign pseudo-words with the given text results in a dual-optimum paradox, 
             i.e., the subject-similarity and the text-controllability could not be optimal simultaneously. 
-            We introduce a novel native real-words paradigm named RealCustom++ that, 
+            <span style="color: red;">We introduce a novel native real-words paradigm named RealCustom++, </span>
             for the first time, disentangles subject-similarity from text-controllability by precisely limiting subject influence to only relevant parts. 
             This is achieved by gradually customizing native real-words from their initial generic concept to the specific subjects and using their cross-attention to distinguish relevance. 
-            Specifically, RealCustom++ introduces a novel ``train-inference" decoupled framework: 
-            (1) during training, RealCustom++ only learns general alignment between visual conditions to original textual conditions, 
-            which includes a time-aware cross-layer cross-scale projector to extract subject features in a robust and fine-detailed way, 
-            and a novel curriculum training recipe to adapt the generated subject in diverse pose and size; 
-            (2) during inference, based on the learned align capabilities, 
-            a novel adaptive mask guidance strategy is proposed to gradually customize the generation of the target native real-words 
-            while keeping other subject-irrelevant regions uncontaminated.
-            Comprehensive experiments demonstrate the superior real-time customization ability of RealCustom++ in the open domain, 
-            outperforming existing state-of-the-art methods on both text controllability and subject similarity. 
-            Furthermore, we demonstrate that RealCustom++ can be effectively extended to various multiple-subject customization tasks.
           </p>
         </div>
       </div>
