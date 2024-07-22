@@ -336,6 +336,7 @@
             (2) secondly composing them with other given text. 
             However, the inherent entangled influence scope of these foreign pseudo-words with the given text results in a dual-optimum paradox, 
             i.e., the subject-similarity and the text-controllability could not be optimal simultaneously. 
+            <br>
             <span style="color: red;">We introduce a novel native real-words paradigm named RealCustom++, </span>
             for the first time, disentangles subject-similarity from text-controllability by precisely limiting subject influence to only relevant parts. 
             This is achieved by gradually customizing native real-words from their initial generic concept to the specific subjects and using their cross-attention to distinguish relevance. 
@@ -364,13 +365,15 @@
           achieving both high-quality similarity and controllability in a real-time open-domain scenario.
           <br>
           <b>Training Paradigm: </b> 
-          RealCustom only learns the generalized alignment capabilities between visual conditions and pre-trained models' 
-          original text conditions on large-scale text-image datasets through a novel adaptive scoring module, 
-          which modulates the influence quantity based on text and currently generated features.
+          During training, RealCustom++ only learns the generic align capabilities between visual conditions and pre-trained models' original text conditions 
+          to ensure high-quality subject-similar generation in open-domain, 
+          which is achieved by a novel Time-aware Cross-layer Cross-Scale Projector (TXP) to extract subject features in a robust and fine-detailed way, 
+          and a novel Curriculum Training Recipe (CTR) that adapts the generated subject in diverse pose and size.
           <br>
           <b>Inference Paradigm: </b> 
-          real-time customization is achieved by a novel adaptive mask guidance strategy, 
-          which gradually narrows down a real text word based on the learned alignment capabilities.
+          During inference, based on the learned align capabilities, 
+          a novel Adaptive Mask Guidance (AMG) strategy is proposed to gradually customize the generation of native real-words 
+          while keeping other subject-irrelevant regions uncontaminated to ensure high-quality text-controllable generation in real-time.
         </p>
       </div>
       </div>
@@ -384,13 +387,16 @@
           <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div> -->
-        <img src="./static/images/comparison_main.jpg"
+        <img src="static/images_real_plus/real++_comparison.jpg"
                  alt="Interpolate start reference image."/>
         <p>
-          RealCustom could produce much higher quality customization results that have better similarity with the given subject 
+          Qualitative comparison. 
+          RealCustom++ produces much higher quality results that have better similarity with the given subject 
           and better controllability with the given text compared to existing works. 
-          Moreover, RealCustom shows superior diversity (different subject poses, locations, etc.) 
-          and generation quality (e.g., the “autumn leaves” scene in the third row).
+          Meanwhile, RealCustom++ shows superior subject diversity in terms of poses, expressions ("smile on her face" in the first row), etc.
+          Furthermore, RealCustom++ can generate customization results with cleaner and more diverse backgrounds. 
+          For instance, in the second row, existing methods like Custom-Diffusion and MS-Diffusion inherit the pink background 
+          from the given subject image, while our RealCustom++ generates a background that aligns more closely with the prompt "on the beach".
         </p>
 
         <img src="static/images/comparison_quantative.jpg"
