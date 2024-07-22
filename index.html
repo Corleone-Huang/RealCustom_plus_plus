@@ -196,7 +196,7 @@
   </div>
 </section>
 
-<!--examples-->
+<!-- examples
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
@@ -251,7 +251,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- <section class="hero is-light is-small">
   <div class="hero-body">
@@ -317,49 +317,30 @@
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <h2 class="title is-3">Abstract</h2>
+        <img src="static/images_real_plus/real++_motivation.jpg"
+                 alt="Interpolate start reference image."/>
         <div class="content has-text-justified">
           <p>
-            Text-to-image customization, which aims to synthesize text-driven images for the given subjects, 
-            has recently revolutionized content creation. Existing works follow the
-            pseudo-word paradigm, i.e., represent the given subjects as
-            pseudo-words and then compose them with the given text.
-            However, the inherent entangled influence scope of pseudo-words with the given text results in a dual-optimum paradox, 
-            i.e., the similarity of the given subjects and the controllability of the given text could not be optimal simultaneously. We present RealCustom that, 
-            for the first time, disentangles similarity from controllability by precisely limiting
-            subject influence to relevant parts only, achieved by gradually narrowing real text word from its general connotation
-            to the specific subject and using its cross-attention to distinguish relevance. Specifically, RealCustom introduces a
-            novel “train-inference” decoupled framework: (1) during
-            training, RealCustom learns general alignment between visual conditions to original textual conditions by a novel
-            adaptive scoring module to adaptively modulate influence
-            quantity; (2) during inference, a novel adaptive mask guidance strategy is proposed to iteratively update the influence
-            scope and influence quantity of the given subjects to gradually narrow the generation of the real text word. Com-
-            prehensive experiments demonstrate the superior real-time
-            customization ability of RealCustom in the open domain,
-            achieving both unprecedented similarity of the given subjects and controllability of the given text for the first time.
+            Text-to-image customization, which aims to synthesize text-driven images for the given subjects, has recently revolutionized content creation. 
+            Existing works follow the foreign pseudo-word paradigm, i.e., 
+            firstly representing the given subjects as pseudo-words that do not exist in the textual vocabulary, 
+            and secondly composing them with other given text. 
+            However, the inherent entangled influence scope of these foreign pseudo-words with the given text results in a dual-optimum paradox, 
+            i.e., the subject-similarity and the text-controllability could not be optimal simultaneously. 
+            We introduce a novel native real-words paradigm named RealCustom++ that, 
+            for the first time, disentangles subject-similarity from text-controllability by precisely limiting subject influence to only relevant parts. 
+            This is achieved by gradually customizing native real-words from their initial generic concept to the specific subjects and using their cross-attention to distinguish relevance. 
+            Specifically, RealCustom++ introduces a novel ``train-inference" decoupled framework: 
+            (1) during training, RealCustom++ only learns general alignment between visual conditions to original textual conditions, 
+            which includes a time-aware cross-layer cross-scale projector to extract subject features in a robust and fine-detailed way, 
+            and a novel curriculum training recipe to adapt the generated subject in diverse pose and size; 
+            (2) during inference, based on the learned align capabilities, 
+            a novel adaptive mask guidance strategy is proposed to gradually customize the generation of the target native real-words 
+            while keeping other subject-irrelevant regions uncontaminated.
+            Comprehensive experiments demonstrate the superior real-time customization ability of RealCustom++ in the open domain, 
+            outperforming existing state-of-the-art methods on both text controllability and subject similarity. 
+            Furthermore, we demonstrate that RealCustom++ can be effectively extended to various multiple-subject customization tasks.
           </p>
-          <!-- <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
-          </p> -->
         </div>
       </div>
     </div>
