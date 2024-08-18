@@ -336,20 +336,23 @@
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <h2 class="title is-3">Abstract (TL,DR)</h2>
-        <img src="static/images_real_plus/real++_motivation.jpg"
+        <img src="static/images_real_plus/page_motivation_0818.jpg"
                  alt="Interpolate start reference image."/>
         <div class="content has-text-justified">
           <p>
             <span style="color: blue;">Existing Text-to-image customization works: </span>
-            follow the foreign pseudo-word paradigm, i.e., 
+            follow the pseudo-word paradigm, i.e., 
             (1) firstly representing the given subjects as pseudo-words that do not exist in the textual vocabulary, 
-            (2) secondly composing them with other given text. 
-            However, the inherent entangled influence scope of these foreign pseudo-words with the given text results in a dual-optimum paradox, 
-            i.e., the subject-similarity and the text-controllability could not be optimal simultaneously. 
+            (2) secondly composing them with other given text to guide the generation collectively. 
+            However, the inherent conflict and entanglement between the pseudo-words and texts result in a dual-optimum paradox, 
+            where subject similarity and text controllability cannot be optimal simultaneously.
             <br>
-            <span style="color: red;">We introduce a novel native real-words paradigm named RealCustom++, </span>
-            for the first time, disentangles subject-similarity from text-controllability by precisely limiting subject influence to only relevant parts. 
-            This is achieved by gradually customizing native real-words from their initial generic concept to the specific subjects and using their cross-attention to distinguish relevance. 
+            <span style="color: red;">We introduce a novel real-words paradigm named RealCustom++, </span>
+            We propose a novel real-words paradigm termed RealCustom++ that instead represents subjects as non-conflict real words, 
+            thereby disentangling subject similarity from text controllability and allowing both to be optimized simultaneously.
+            The core idea of RealCustom++ is to represent given subjects as real words (i.e., its super-category word) 
+            that can be seamlessly integrated with given texts, 
+            and further leveraging the relevance between real words and image regions to disentangle subjects from texts. 
           </p>
         </div>
       </div>
@@ -365,25 +368,23 @@
           <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div> -->
-        <img src="static/images_real_plus/real++_paradigm.jpg"
+        <img src="static/images_real_plus/page_framework_0818.jpg"
                  alt="Interpolate start reference image."/>
       <div class="content has-text-left">
         <p>
-          <b>Core Idea: </b> disentangle the influence scope of the <b> given subject </b> from the influence scope of the <b>given text</b>, 
-          by precisely limiting the given subjects to influence only the relevant parts 
-          while maintaining other irreverent ones purely controlled by the given texts, 
-          achieving both high-quality similarity and controllability in a real-time open-domain scenario.
+          Illustration of RealCustom++, which employs a novel “train-inference” decoupled framework: 
           <br>
           <b>Training Paradigm: </b> 
-          During training, RealCustom++ only learns the generic align capabilities between visual conditions and pre-trained models' original text conditions 
-          to ensure high-quality subject-similar generation in open-domain, 
-          which is achieved by a novel Time-aware Cross-layer Cross-Scale Projector (TXP) to extract subject features in a robust and fine-detailed way, 
-          and a novel Curriculum Training Recipe (CTR) that adapts the generated subject in diverse pose and size.
+          RealCustom++ learns the alignment between vision conditions and all real words in the text.
+          This is achieved by the Cross-layer Cross-Scale Projector (CCP) to robustly and finely extract subject features, 
+          and a Curriculum Training Recipe (CTR) that adapts the generated subject to diverse poses and sizes.
+          The projected visual conditions are injected into the diffusion models 
+          by extending their textual cross-attention with an additional visual cross-attention in each block.
           <br>
           <b>Inference Paradigm: </b> 
-          During inference, based on the learned align capabilities, 
-          a novel Adaptive Mask Guidance (AMG) strategy is proposed to gradually customize the generation of native real-words 
-          while keeping other subject-irrelevant regions uncontaminated to ensure high-quality text-controllable generation in real-time.
+          A novel Adaptive Mask Guidance (AMG) is proposed to customize the generation of the specific target real word ("toy" in this case).
+          This is achieved by incorporating two branches for each generation step: a Guidance Branch that constructs the image guidance mask 
+          and a Generation Branch that uses the image guidance mask to keep other subject-irrelevant regions uncontaminated.
         </p>
       </div>
       </div>
@@ -409,13 +410,13 @@
           from the given subject image, while our RealCustom++ generates a background that aligns more closely with the prompt "on the beach".
         </p>
 
-        <img src="static/images_real_plus/real++_comparison22.jpg"
+        <!-- <img src="static/images_real_plus/real++_comparison22.jpg"
                  alt="Interpolate start reference image."/>
         <p>
           <div class="content has-text-left">
           <b>Quantitative comparisons. </b>
           </div>
-        </p>
+        </p> -->
 
         <img src="static/images_real_plus/real++_comparison_multiple.jpg"
                  alt="Interpolate start reference image."/>
@@ -442,12 +443,16 @@
                   alt="Interpolate start reference image."/>
         <p>
           <div class="content has-text-left">
-          Illustration of gradually narrowing the real words into the given subjects. 
-          RealCustom generated results (first row) and the original text-to-image generated result (second row) by pre-trained models with the same seed. 
-          The mask is visualized by the Top-25% highest attention score regions of the real word “toy”. 
-          We could observe that starting from the same state (the same mask since there's no information of the given subject is introduced at the beginning), 
-          RealCustom gradually forms the structure and details of the given subject by our proposed adaptive mask strategy, 
-          achieving the open-domain zero-shot customization.
+            Illustration of gradually customizing the target real words into the given subjects for single-subject customization. 
+            The customized words are highlighted in red, 
+            with their attention maps gradually forming into the given subjects and details being added step by step. 
+            This process provides a more accurate image guidance mask for open-domain customization, 
+            while the remaining subject-irrelevant parts are completely controlled by the given text.
+            <br>
+            Illustration of gradually customizing the native real words into the given subjects for multiple-subject customization. 
+            The different customized words in each case are highlighted in blue and green, respectively. 
+            We show that RealCustom++ provides accurate and decoupled guidance masks for each given subject, 
+            thereby achieving high-quality similarity for each subject.
           </div>
         </p>
 
